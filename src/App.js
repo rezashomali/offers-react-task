@@ -4,7 +4,6 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import OffersList from "./components/OffersList/OffersList";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOffers } from "./redux/actions/actions";
-import "./App.css";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
