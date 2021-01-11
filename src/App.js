@@ -1,29 +1,75 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import OffersList from "./components/OffersList/OffersList";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchOffers } from "./redux/actions/actions";
 import "./App.css";
 
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    position: "relative",
+    marginBottom: 20,
+  },
+  layout: {
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: "90%",
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5),
+  },
+  buttons: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
+}));
+
 function App() {
-  const [data, setData] = useState([]);
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get("https://cdn.sixt.io/codingtask/offers.json").then((res) => {
-      setData(res.data.offers);
-    });
+    dispatch(fetchOffers());
   }, []);
+
+  const { error, loading } = useSelector((state) => ({
+    error: state.error,
+    loading: state.loading,
+  }));
 
   return (
     <div className="App">
-      {data &&
-        data.map((item) => (
-          <li key={item.id}>
-            <img
-              src={`https://www.sixt.de${item.images.medium}`}
-              alt={item.vehicleGroupInfo.modelExample.name}
-            />
-            <p>{item.vehicleGroupInfo.modelExample.name}</p>
-            <p>{item.prices.totalPrice.amount.value}</p>
-          </li>
-        ))}
+      <AppBar color="default" className={classes.appBar}>
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            SIXT
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <main className={classes.layout}>
+        {loading ? "Loading..." : error ? error : <OffersList />}
+      </main>
     </div>
   );
 }
