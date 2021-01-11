@@ -9,9 +9,6 @@ import {
 } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  media: {
-    height: 140,
-  },
   carName: {
     height: "40px",
   },
