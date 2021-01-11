@@ -22,7 +22,7 @@ export const fetchOffersFailure = (error) => ({
 
 export const fetchOffers = () => (dispatch) => {
   dispatch(fetchOffersRequest);
-  axios
+  return axios
     .get("https://cdn.sixt.io/codingtask/offers.json")
     .then((res) => {
       const offers = res.data.offers.map((item) => ({
