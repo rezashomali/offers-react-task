@@ -9,9 +9,6 @@ import {
 } from "@material-ui/core";
 
 const useStyles = makeStyles({
-  root: {
-    // maxWidth: 345,
-  },
   media: {
     height: 140,
   },
@@ -27,10 +24,9 @@ const useStyles = makeStyles({
 
 const OffersListItem = ({ offer }) => {
   const classes = useStyles();
-
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Card className={classes.root}>
+      <Card>
         <CardMedia
           component="img"
           className={classes.carImage}
