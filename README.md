@@ -1,4 +1,24 @@
-# Getting Started with Create React App
+# Sixt - frontend coding task
+
+1. get data from api
+1. display name, image, price in grid
+1. the list is responsive grid
+1. In case any car images are missing, use a fall-back image.
+1. add redux store
+1. add test
+   1. test if the is Running
+   1. snapshot tests
+   1. test redux (actions, async action, reducers)
+
+## Libraries
+
+- material ui : for design
+- redux : for store
+- redux-thunk : for async api call
+- axios : for api call
+- redux-mock-store, node-fetch, fetch-mock : for testing async api call
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
